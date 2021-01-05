@@ -10,7 +10,9 @@ case "$rootorno" in
 	"asroot") echo "\nRunning this installer as a root user"
 		sh requirements.sh
 		;;
-	"nonroot") echo "\nRunning this installer as a non-root user"
+	"nonroot") echo "\nWellp, this installation requires some prerequisite packages to be installed.."
+		echo "\nExiting setup..."
+		exit 1
 		;;
 	"*") echo "\nInvalid key pressed, exiting setup..."
 		exit 1
