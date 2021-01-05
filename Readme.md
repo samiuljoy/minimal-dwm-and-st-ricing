@@ -70,7 +70,7 @@ s. Font family is set to Fira Code Medium
 
 t. MODKEY+Ctrl+Return make selected window to move to prominent window(master window)
 
-u. Hover over a window and scroll to move focus to that screen since focus follows mouse is turned off.
+u. Hover over a window and scroll to move focus to that screen since focus follows mouse is turned off. To turn on Focus follows mouse, uncomment line #168 and #254 that says enternotify.
 
 ### st directory includes
 
