@@ -1,0 +1,28 @@
+syntax on
+filetype plugin indent on
+set termguicolors
+map q :q<ENTER>
+map w :w<ENTER>
+let &t_8f = "\<ESC>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<ESC>[48;2;%lu;%lu;%lum"
+colo iceberg
+set ls=0
+set mouse=a
+map spy :setlocal spell spelllang=en_us
+map spn :setlocal nospell
+" autocmd BufEnter *.md colorscheme gruvbox-material
+autocmd BufEnter *.md setlocal spell spelllang=en_us
+set noswapfile
+" set clipboard+=unnamed
+" set pastetoggle=<F2>
+" set clipboard=unnamedplus
+" colo miramare
+" colo camo
+" autocmd BufEnter *.css set tabstop=2
+" autocmd BufEnter *.css set shiftwidth=2
+" autocmd BufEnter *.html set tabstop=2
+" autocmd BufEnter *.html set shiftwidth=2
+" If you've got NerdTree plugin, typing in ctrl+n will switch it on/off. Also
+" the window size is set to 16, you can change that as your heart desires.
+" :let g:NERDTreeWinSize=30
+" let NERDTreeShowHidden=1

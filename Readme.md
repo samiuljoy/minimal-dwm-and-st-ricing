@@ -2,47 +2,31 @@
 
 ### Screenshots
 
+![home](screenshots/home.png)
+
+![screenshot](screenshots/screenshot.png)
+
+![split](screenshots/split.png)
+
+![vim-and-iceberg](screenshots/vim-and-iceberg.png)
+
+![exit-prompt](screenshots/exit-prompt.png)
+
 ### Stuffs in this repository
 
-1. **.vimrc** = Vimrc configs for vim
+1. Some handy dotfiles I use in my daily life
 
-2. **.bashrc** = Some bashrc configuration
+2. Dwm and St source directories
 
-3. **suckless/dwm and st** = Dynamic window manager and suckless terminal
+3. Wallpaper directory
 
-4. **Custom colorschemes for vim** = [gruvbox](https://github.com/morhetz/gruvbox), [miramare](https://github.com/franbach/miramare), [iceberg](https://github.com/cocopon/iceberg.vim), [substrata](https://github.com/arzg/vim-substrata) 
+4. Automated Installation script
 
-5. **System-wide font used** = Fira Code Medium
+### DWM directory include
 
-6. **bonus.sh** = If you wish to download some packages I use on a daily basis, they are included in bonus.sh script. You can run it with either by running setup.sh or running it manually from your shell
+**dwm-6.2 source code**
 
-7. Wallpaper taken from [Debian art theme->change](https://wiki.debian.org/DebianArt/Themes/Change). Credits to Wilton Gorske
-
-### In `.vimrc`
-
-Using this vimrc, you get;
-
-a. Default Vim colorscheme is set to iceberg (remember to copy vim-colors/iceberg.vim to /usr/share/vim/vim\*/colors/)
-
-b. Turn on spell check with spy(in command mode) and turn off spell check using spn(in command mode)
-
-c. Spell check is turned on automatically for markdown files or files having `.md` extension and default colorscheme for markdown files is set to miramare
-
-d. Page down with space
-
-e. **Miscellaneous:** syntax is enabled, laststatus is set to 0, termguicolors is enabled, noswapfile is set, background is set to dark, relativenumber and numbers are on, fixed termguicolors for st.
-
-f. Although optional, if you're not using w and q for their defined actions, you can map them to save and quit, just uncomment line 5 and 6, save vimrc. Now, you can exit vim with q and save with w. Easy as that.
-
-### Stuffs in `.bashrc and bash_aliases`
-
-a. A few of aliases and file specific color profiles in .bash_aliases for specific file formats.
-
-b. A cs function at the end. Type in `cs /path/to/directory/` and it'll cd to that directory and list out its contents
-
-### DWM configs include
-
-***Patches included***
+***Patche folder includes***
 
 I've included some patches under `suckless/dwm-6.2/patches/` directory. Currently I've included only one patch pre-installed which is the `pertag` patch. This allows tilling layouts to be maintained as they separately across different tags.
 
@@ -50,4 +34,83 @@ I've included some patches under `suckless/dwm-6.2/patches/` directory. Currentl
 
 a. Move across screens with vim keys as well as arrow keys like in i3
 
-b. 
+b. Default mod key is set to super
+
+c. Open terminal with MODKEY+Return
+
+d. Default font is set to Fira Code Medium
+
+e. Dmenu prompt with MODKEY+d
+
+f. Close a window with MODKEY+q
+
+h. On the status bar, tiling layout is denoted by `(^-^)`, floating layout is denoted by `(o.o)` and monocle layout is denoted by `{-.-}`. Thought this could be fun ^..^
+
+i. The status bar is left to be completely untouched(aka default), because I like it that way -.-
+
+j. Use MODKEY+F4 for seeing time as notification. Note that `libnotify-bin` needs to be pre-installed if you're building your system up from a minimal installation.
+
+k. See cpu core temp with MODKEY+F3.
+
+l. If you're using pulseaudio, you can increase volume with F9, and decrease with F8, and toggle mute with F10.
+
+m. Take a screenshot with scrot by pressing the Print key
+
+n. Terminal file manager is set to be nnn(Noice is Not Noice), and can be launched using MODKEY+g. The default terminal is set to st(simple terminal)
+
+o. Launch a floating terminal using MOD2KEY+Return. MOD2KEY is set to alt, so Alt+Return.
+
+p. If you're using mocp music player, launch it with MOD2KEY+p.
+
+q. Exit prompt is ran with zenity prompt. To exit, press MODKEY+Shift+e
+
+r. Launch Firefox-esr with MODKEY+w. This will run Firefox in floating mode in 3rd tag.
+
+s. Font family is set to Fira Code Medium
+
+t. MODKEY+Ctrl+Return make selected window to move to prominent window(master window)
+
+### st directory includes
+
+**st-0.8.4**
+
+**Patch folder includes**
+
+Patches folder include 3 patches, one for proper transparency(alpha patch), and rest of the two patches for scrolling. Scroll patches are pre-patched and you don't have to manually patch it ^.^
+
+**Customizations**
+
+a. Colorscheme is a darker version of nord(background color being black).
+
+b. Font family is set to Fira Code Medium
+
+c. Page up with Shift+PageUp, Page down with Shift+PageDown(default keys included with scroll patches)
+
+
+### Shell scripts
+
+The shell script directory includes scripts ready to be placed in `/usr/local/bin` as root. These shell scripts are necessary for little stuffs like viewing time, temperature, for zenity exit prompt, for volume up and down. As root, place these scripts in `/usr/local/bin` and chmod them to 755.
+
+
+### Setting everything up.
+
+For dwm and st to compile and install successfully, you'll need libraries pre-installed. Install them with;
+
+```sh
+apt install libx11-dev libxft-dev libxinerama-dev
+```
+Also notice that the default font is set to be Fira Code Medium, You'll also need to install FiraCode font family with;
+
+```sh
+apt install fonts-firacode
+```
+
+When that's done, just `cd` into dwm or st as root and run `make` and `make install`
+
+### Automated installation
+
+The automated installation script will install all the prerequisites along with some additional packages. Of course you'll have the freedom to choose which packages you'll be needing (^-^)
+
+***Godspeed...***
+
+Feel free to support at [bitcoin] 13erq7DDXDuqqBohht3UNyuJCXtpJcWGSe
