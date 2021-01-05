@@ -73,7 +73,7 @@ if [ $(id -u) = 0 ]; then
 	case "$notify" in
 		"5") which notify-send > /dev/null
 			if [ $? = 0 ]; then
-			echo "\notify-send seems to be already installed on your system, great!, skipping notify-send installation"
+			echo "\nNotify-send seems to be already installed on your system, great!, skipping notify-send installation"
 		else
 			echo "Installing notify-send file manager"
 			apt install libnotify-bin
@@ -103,7 +103,7 @@ if [ $(id -u) = 0 ]; then
 	case "$scrott" in
 		"7") which scrot > /dev/null
 			if [ $? = 0 ]; then
-			echo "\Scrot seems to be already installed on your system, great!, skipping scrot installation"
+			echo "\nScrot seems to be already installed on your system, great!, skipping scrot installation"
 		else
 			echo "Installing scrot"
 			apt install scrot
