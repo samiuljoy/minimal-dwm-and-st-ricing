@@ -23,7 +23,7 @@ if [ $(id -u) = 0 ]; then
 		else
 			echo "Installing vim"
 			apt install vim
-		fi
+			fi
 			;;
 		"s") echo "\nSkipping vim installation"
 			;;
@@ -38,7 +38,7 @@ if [ $(id -u) = 0 ]; then
 		else
 			echo "Installing nnn file manager"
 			apt install nnn
-		fi
+			fi
 			;;
 		"s") echo "\nSkipping nnn installation"
 			;;
@@ -49,7 +49,6 @@ if [ $(id -u) = 0 ]; then
 	case "$libx" in
 		"3") echo "\nInstalling required libraries for suckless utilities"
 			apt install build-essential libxft-dev libxinerama-dev libx11-dev -yy
-		fi
 			;;
 		"s") echo "\nSkipping custom libraries installation"
 			;;
@@ -78,7 +77,7 @@ if [ $(id -u) = 0 ]; then
 		else
 			echo "Installing notify-send file manager"
 			apt install libnotify-bin
-		fi
+			fi
 			;;
 		"s") echo "\nSkipping notify-send installation"
 			;;
@@ -93,7 +92,7 @@ if [ $(id -u) = 0 ]; then
 		else
 			echo "Installing pulseaudio"
 			apt install pulseaudio
-		fi
+			fi
 			;;
 		"s") echo "\nSkipping pulseaudio installation"
 			;;
@@ -108,7 +107,7 @@ if [ $(id -u) = 0 ]; then
 		else
 			echo "Installing scrot"
 			apt install scrot
-		fi
+			fi
 			;;
 		"s") echo "\nSkipping scrot installation"
 			;;
@@ -123,7 +122,7 @@ if [ $(id -u) = 0 ]; then
 		else
 			echo "Installing Zenity"
 			apt install zenity
-		fi
+			fi
 			;;
 		"s") echo "\nSkipping zenity installation"
 			;;
@@ -139,7 +138,7 @@ if [ $(id -u) = 0 ]; then
 		else
 			echo "Installing lm-sensors"
 			apt install lm-sensors
-		fi
+			fi
 			;;
 		"s") echo "\nSkipping lm-sensors installation"
 			;;
@@ -154,7 +153,7 @@ if [ $(id -u) = 0 ]; then
 		else
 			echo "Installing compton"
 			apt install compton
-		fi
+			fi
 			;;
 		"s") echo "\nSkipping compton installation"
 			;;
@@ -169,7 +168,7 @@ if [ $(id -u) = 0 ]; then
 		else
 			echo "Installing feh"
 			apt install feh
-		fi
+			fi
 			;;
 		"s") echo "\nSkipping feh installation"
 			;;
@@ -179,4 +178,5 @@ if [ $(id -u) = 0 ]; then
 
 else
 	echo "\nSeems like you dont have root privilege. You need to have root privilege to install packages"
+	exit 1
 fi
