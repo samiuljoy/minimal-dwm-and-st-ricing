@@ -70,6 +70,8 @@ s. Font family is set to Fira Code Medium
 
 t. MODKEY+Ctrl+Return make selected window to move to prominent window(master window)
 
+u. Hover over a window and scroll to move focus to that screen since focus follows mouse is turned off.
+
 ### st directory includes
 
 **st-0.8.4**
