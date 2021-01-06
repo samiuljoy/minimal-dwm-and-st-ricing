@@ -6,6 +6,8 @@
 
 ![screenshot](screenshots/screenshot.png)
 
+![neofetch](screenshots/neofetch.png)
+
 ![split](screenshots/split.png)
 
 ![vim-and-iceberg](screenshots/vim-and-iceberg.png)
@@ -28,7 +30,7 @@
 
 ***Patch folder includes***
 
-I've included some patches under `suckless/dwm-6.2/patches/` directory. Currently I've included only one patch pre-installed which is the `pertag` patch. This allows tilling layouts to be maintained as they separately across different tags.
+I've included some patches under `suckless/dwm-6.2/patches/` directory. Currently I've included only one patch pre-installed which is the `pertag` patch. This allows tilling layouts to be maintained separately across different tags.
 
 **Customizations**
 
@@ -58,7 +60,9 @@ I've included some patches under `suckless/dwm-6.2/patches/` directory. Currentl
 
 - Terminal file manager is set to be nnn(Noice is Not Noice), and can be launched using MODKEY+g. The default terminal is set to st(simple terminal)
 
-- Launch a floating terminal using MOD2KEY+Return. MOD2KEY is set to alt, so Alt+Return.
+- Launch a floating terminal using MOD2KEY+Return. MOD2KEY is set to alt
+
+- Switch between recent tags with MOD2KEY+Tab
 
 - If you're using mocp music player, launch it with MOD2KEY+p.
 
@@ -70,7 +74,7 @@ I've included some patches under `suckless/dwm-6.2/patches/` directory. Currentl
 
 - MODKEY+Ctrl+Return make selected window to move to prominent window(master window)
 
-- Hover over a window and scroll to move focus to that screen since focus follows mouse is turned off. To turn on Focus follows mouse, uncomment line #168 and #254 that says enternotify.
+- Hover over a window and scroll to move focus to that screen since focus follows mouse is turned off. To turn on Focus follows mouse, uncomment line #168 and #254 that says enternotify in dwm.c
 
 ### st directory includes
 
@@ -115,4 +119,4 @@ The automated installation script will install all the prerequisites along with 
 
 ***Godspeed...***
 
-Feel free to support at [bitcoin] 13erq7DDXDuqqBohht3UNyuJCXtpJcWGSe
+Feel free to support with [bitcoin] 13erq7DDXDuqqBohht3UNyuJCXtpJcWGSe

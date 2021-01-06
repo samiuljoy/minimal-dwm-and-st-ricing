@@ -4,12 +4,12 @@ if [ $(id -u) = 0 ]; then
 	echo "\n\t1. Vim(optional)"
 	echo "\n\t2. nnn file manager(optional)"
 	echo "\n\t3. Build essentials and libxft-dev, libxinerama-dev and libx11-dev for suckless utilities(required)"
-	echo "\n\t4. Font Fira Code(required)"
+	echo "\n\t4. Fira Code font family(required)"
 	echo "\n\t5. libnotify-bin for notify-send(optional)"
 	echo "\n\t6. pulseaudio(optional)"
-	echo "\n\t7. Scrot screenshoter(optional)"
+	echo "\n\t7. Scrot screenshooter(optional)"
 	echo "\n\t8. Zenity for exit prompt(required)"
-	echo "\n\t9. lm-sensors for viewing cpu termperature(optional)"
+	echo "\n\t9. lm-sensors for viewing cpu temperature(optional)"
 	echo "\n\t10. Compton for transparency and stuffs(optional)"
 	echo "\n\t11. feh image viewer(optional)"
 	echo
@@ -23,6 +23,11 @@ if [ $(id -u) = 0 ]; then
 		else
 			echo "Installing vim"
 			apt install vim
+			if [ $? = 0 ]; then
+				echo "\nVim installed correctly"
+			else
+				echo "\nSomething went wrong while installing vim"
+			fi
 			fi
 			;;
 		"s") echo "\nSkipping vim installation"
@@ -38,6 +43,10 @@ if [ $(id -u) = 0 ]; then
 		else
 			echo "Installing nnn file manager"
 			apt install nnn
+			if [ $? = 0 ]; then
+				echo "\nnnn installed correctly"
+			else echo "\nSomething went wrong while installing nnn"
+			fi
 			fi
 			;;
 		"s") echo "\nSkipping nnn installation"
@@ -49,6 +58,10 @@ if [ $(id -u) = 0 ]; then
 	case "$libx" in
 		"3") echo "\nInstalling required libraries for suckless utilities"
 			apt install build-essential libxft-dev libxinerama-dev libx11-dev -yy
+			if [ $? = 0 ]; then
+				echo "\nRequired libraries for suckless utilities installed correctly"
+			else echo "\nSome went wrong while installing required dependencies"
+			fi
 			;;
 		"s") echo "\nSkipping custom libraries installation"
 			;;
@@ -62,6 +75,10 @@ if [ $(id -u) = 0 ]; then
 		else
 			echo "Installing Fira Code font family"
 			apt install fonts-firacode
+			if [ $? = 0 ]; then
+				echo "\nFira Code font family installed correctly"
+			else echo "\nSomething went wrong while installing Firacode font family"
+			fi
 		fi
 			;;
 		"s") echo "\nSkipping fonts-firacode installation"
@@ -77,6 +94,11 @@ if [ $(id -u) = 0 ]; then
 		else
 			echo "Installing notify-send file manager"
 			apt install libnotify-bin
+			if [ $? = 0 ]; then
+				echo "\nNotify-send installed correctly"
+			else
+				echo "\nSomething went wrong while installing notify-send"
+			fi
 			fi
 			;;
 		"s") echo "\nSkipping notify-send installation"
@@ -88,10 +110,15 @@ if [ $(id -u) = 0 ]; then
 	case "$plseaudio" in
 		"6") which pulseaudio > /dev/null
 			if [ $? = 0 ]; then
-			echo "\Pulseaudio seems to be already installed on your system, great!, skipping installation"
+			echo "\nPulseaudio seems to be already installed on your system, great!, skipping installation"
 		else
 			echo "Installing pulseaudio"
 			apt install pulseaudio
+			if [ $? = 0 ]; then
+				echo "\nPulseaudio installed correctly on your system"
+			else
+				echo "\nSomething went wrong while installing pulseaudio"
+			fi
 			fi
 			;;
 		"s") echo "\nSkipping pulseaudio installation"
@@ -107,6 +134,11 @@ if [ $(id -u) = 0 ]; then
 		else
 			echo "Installing scrot"
 			apt install scrot
+			if [ $? = 0 ]; then
+			       echo "\nScrot installed correctly"
+		       else
+			       echo "\nSomething went wrong installing scrot on your system"
+			fi
 			fi
 			;;
 		"s") echo "\nSkipping scrot installation"
@@ -118,10 +150,15 @@ if [ $(id -u) = 0 ]; then
 	case "$zenitty" in
 		"8") which zenity > /dev/null
 			if [ $? = 0 ]; then
-			echo "\Zenity seems to be already installed on your system, great!, skipping zenity installation"
+			echo "\nZenity seems to be already installed on your system, great!, skipping zenity installation"
 		else
 			echo "Installing Zenity"
 			apt install zenity
+			if [ $? = 0 ]; then
+				echo "\nzenity installed correctly on your system"
+			else
+				echo "\nSomething went wrong while installing zenity on your system"
+			fi
 			fi
 			;;
 		"s") echo "\nSkipping zenity installation"
@@ -134,10 +171,15 @@ if [ $(id -u) = 0 ]; then
 	case "$sensors" in
 		"9") which sensors > /dev/null
 			if [ $? = 0 ]; then
-			echo "\Zlm-sensors seems to be already installed on your system, great!, skipping sensors installation"
+			echo "\nlm-sensors seems to be already installed on your system, great!, skipping sensors installation"
 		else
 			echo "Installing lm-sensors"
 			apt install lm-sensors
+			if [ $? = 0 ]; then
+				echo "\nlm-sensors installed correctly on your system"
+			else
+				echo "\nSomething went wrong while installing lm-sensors on your system"
+			fi
 			fi
 			;;
 		"s") echo "\nSkipping lm-sensors installation"
@@ -149,10 +191,15 @@ if [ $(id -u) = 0 ]; then
 	case "$compton" in
 		"10") which compton > /dev/null
 			if [ $? = 0 ]; then
-			echo "\Zcompton seems to be already installed on your system, great!, skipping compton installation"
+			echo "\ncompton seems to be already installed on your system, great!, skipping compton installation"
 		else
 			echo "Installing compton"
 			apt install compton
+			if [ $? = 0 ]; then
+				echo "\nCompton installed correctly"
+			else
+				echo "\nSomething went wrong while installing compton on your system"
+			fi
 			fi
 			;;
 		"s") echo "\nSkipping compton installation"
@@ -164,10 +211,15 @@ if [ $(id -u) = 0 ]; then
 	case "$fehh" in
 		"11") which feh > /dev/null
 			if [ $? = 0 ]; then
-			echo "\ZFeh image viewer seems to be already installed on your system, great!, skipping feh installation"
+			echo "\nFeh image viewer seems to be already installed on your system, great!, skipping feh installation"
 		else
 			echo "Installing feh"
 			apt install feh
+			if [ $? = 0 ]; then
+				echo "\nFeh image viewer installed correctly"
+			else
+				echo "\nSomething went wrong while installing feh on your system"
+			fi
 			fi
 			;;
 		"s") echo "\nSkipping feh installation"
@@ -177,6 +229,6 @@ if [ $(id -u) = 0 ]; then
 	esac
 
 else
-	echo "\nSeems like you dont have root privilege. You need to have root privilege to install packages"
+	echo "\nSeems like you don't have root privilege. You need to have root privilege to install packages"
 	exit 1
 fi
