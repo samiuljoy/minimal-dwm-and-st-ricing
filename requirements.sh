@@ -12,10 +12,11 @@ if [ $(id -u) = 0 ]; then
 	echo "\n\t9. lm-sensors for viewing cpu temperature(optional)"
 	echo "\n\t10. Compton for transparency and stuffs(optional)"
 	echo "\n\t11. feh image viewer(optional)"
+	echo "\n\t12. fzf command line fuzzt finder(optional)"
 	echo
 	echo "\nChose number/s followed by spaces, say if you wish to install vim, nnn, libxft*, pulseaudio, and lm-sensors, but not and fira code, libnotify, scrot and zenity you would have to type in in 1 2 3 s s 6 s s 9 s s. Here "s" stands for skip"
 	echo
-	read -p "Chose applications to install " vimm nnn libx firaa notify plseaudio scrott zenitty sensors compton fehh
+	read -p "Chose applications to install " vimm nnn libx firaa notify plseaudio scrott zenitty sensors compton fehh fzff
 	case "$vimm" in
 		"1") which vim > /dev/null
 			if [ $? = 0 ]; then
@@ -228,6 +229,25 @@ if [ $(id -u) = 0 ]; then
 			;;
 	esac
 
+	case "$fzff" in
+		"12") which fzf > /dev/null
+			if [ $? = 0 ]; then
+			echo "\nFzf seems to be already installed on your system, great!, skipping feh installation"
+		else
+			echo "Installing fzf"
+			apt install fzf
+			if [ $? = 0 ]; then
+				echo "\nfzf installed correctly"
+			else
+				echo "\nSomething went wrong while installing fzf on your system"
+			fi
+			fi
+			;;
+		"s") echo "\nSkipping fzf installation"
+			;;
+		*) echo "Invalid input, skipping fzf installation..."
+			;;
+	esac
 else
 	echo "\nSeems like you don't have root privilege. You need to have root privilege to install packages"
 	exit 1
