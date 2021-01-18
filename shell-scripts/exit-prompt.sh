@@ -1,16 +1,16 @@
 #!/bin/sh
-prompt=$(zenity --list --column="0" "exit" "reboot" "poweroff" "lock" "suspend" --hide-header)
+prompt="$(zenity --title="Exit prompt" --list --column="0" "exit" "reboot" "poweroff" "lock" "suspend" --hide-header)"
 
 case "$prompt" in
-	"exit") pkill dwm
+	"exit") sleep 1 && pkill dwm
 		;;
-	"reboot") systemctl reboot
+	"reboot") sleep 1 && systemctl reboot
 		;;
-	"poweroff") systemctl poweroff && exit 0
+	"poweroff") sleep 1 && systemctl poweroff
 		;;
-	"lock") pkill dwm
+	"lock") sleep 1 && pkill dwm
 		;;
-	"suspend") systemctl suspend
+	"suspend") sleep 1 && systemctl suspend
 		;;
 	*) exit 1
 		;;
