@@ -61,7 +61,8 @@ if [ $(id -u) = 0 ]; then
 			apt install build-essential libxft-dev libxinerama-dev libx11-dev -yy
 			if [ $? = 0 ]; then
 				echo "\nRequired libraries for suckless utilities installed correctly"
-			else echo "\nSome went wrong while installing required dependencies"
+			else
+				echo "\nSome went wrong while installing required dependencies"
 			fi
 			;;
 		"s") echo "\nSkipping custom libraries installation"
