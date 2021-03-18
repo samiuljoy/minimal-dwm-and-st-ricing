@@ -23,5 +23,5 @@ if [ $? = 0 ]; then
 	echo "\n\nSettings complete I guess. You can now head over to dwm and st directories and run make and make install on each direcotry to install dwm and st"
 	echo "\n\t\t\t\t>>>>>>>> I appreciate you trying out my setup. Hopefully you'll end up liking it ^.^ <<<<<<<<"
 else
-	echo "\nRun setup another time I guess...but as root ^~^"
+	echo "\nInstallation halted^~^"
 fi

@@ -58,7 +58,7 @@ if [ $(id -u) = 0 ]; then
 
 	case "$libx" in
 		"3") echo "\nInstalling required libraries for suckless utilities"
-			apt install build-essential libxft-dev libxinerama-dev libx11-dev -yy
+			apt install -y build-essential libxft-dev libxinerama-dev libx11-dev
 			if [ $? = 0 ]; then
 				echo "\nRequired libraries for suckless utilities installed correctly"
 			else
@@ -250,6 +250,6 @@ if [ $(id -u) = 0 ]; then
 			;;
 	esac
 else
-	echo "\nSeems like you don't have root privilege. You need to have root privilege to install packages"
+	echo "\nSeems like you don't have root privilege. You need to have root privilege to install packages. Run the installer as root user"
 	exit 1
 fi
