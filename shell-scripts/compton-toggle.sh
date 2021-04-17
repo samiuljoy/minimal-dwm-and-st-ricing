@@ -1,6 +1,7 @@
+#!/usr/bin/env sh
 pidof compton >/dev/null
 if [ $? = 0 ]; then
-	pkill compton
+    pkill compton
 else
-	compton &
+    compton &
 fi

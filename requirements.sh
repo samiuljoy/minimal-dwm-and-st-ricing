@@ -1,255 +1,209 @@
-#!/bin/sh
+#!/usr/bin/env sh
+
+# Error check
+error_check() {
+    case "$?" in
+        0 ) echo "Successful installation"
+            ;;
+        * ) echo "Something went wrong while installing $package_name"
+            return 1
+            ;;
+    esac
+}
+
+# default function;
+default_install() {
+    which $package_query > /dev/null
+    case "$?" in
+        0 ) echo "$package_name seems to be already installed, skipping $package_name installation"
+            ;;
+        * ) echo "Installing $package_name"
+            apt install -yy $package_name
+            # Calling error check function
+            error_check
+            ;;
+    esac
+}
+
+# skip installation
+skip_install() {
+    echo "skipping $package_name installation"
+}
+
+# invalid input message
+invalid_input() {
+    echo "Invalid input, continuing rest of the setup"
+}
+
 if [ $(id -u) = 0 ]; then
-	echo "\nSeems like you are root, well, below is a list of packages that will be downloaded"
-	echo "\n\t1. Vim(optional)"
-	echo "\n\t2. nnn file manager(optional)"
-	echo "\n\t3. Build essentials and libxft-dev, libxinerama-dev and libx11-dev for suckless utilities(required)"
-	echo "\n\t4. Fira Code font family(required)"
-	echo "\n\t5. libnotify-bin for notify-send(optional)"
-	echo "\n\t6. pulseaudio(optional)"
-	echo "\n\t7. Scrot screenshooter(optional)"
-	echo "\n\t8. Zenity for exit prompt(required)"
-	echo "\n\t9. lm-sensors for viewing cpu temperature(optional)"
-	echo "\n\t10. Compton for transparency and stuffs(optional)"
-	echo "\n\t11. feh image viewer(optional)"
-	echo "\n\t12. fzf command line fuzzt finder(optional)"
-	echo
-	echo "\nChose number/s followed by spaces, say if you wish to install vim, nnn, libxft*, pulseaudio, and lm-sensors, but not and fira code, libnotify, scrot and zenity you would have to type in in 1 2 3 s s 6 s s 9 s s. Here "s" stands for skip"
-	echo
-	read -p "Chose applications to install " vimm nnn libx firaa notify plseaudio scrott zenitty sensors compton fehh fzff
-	case "$vimm" in
-		"1") which vim > /dev/null
-			if [ $? = 0 ]; then
-			echo "\nVim seems to be already installed on your system, great!, skipping vim installation"
-		else
-			echo "Installing vim"
-			apt install vim
-			if [ $? = 0 ]; then
-				echo "\nVim installed correctly"
-			else
-				echo "\nSomething went wrong while installing vim"
-			fi
-			fi
-			;;
-		"s") echo "\nSkipping vim installation"
-			;;
-		*) echo "Invalid input, skipping vim installation continuing rest of the setup though..."
-			;;
-	esac
+    echo "\nSeems like you are root, well, below is a list of packages that will be downloaded"
+    echo "\n\t1. Vim(optional)"
+    echo "\n\t2. nnn file manager(optional)"
+    echo "\n\t3. Build essentials and libxft-dev, libxinerama-dev and libx11-dev for suckless utilities(required)"
+    echo "\n\t4. Fira Code font family(required)"
+    echo "\n\t5. libnotify-bin for notify-send(optional)"
+    echo "\n\t6. pulseaudio(optional)"
+    echo "\n\t7. Scrot screenshooter(optional)"
+    echo "\n\t8. Zenity for exit prompt(required)"
+    echo "\n\t9. lm-sensors for viewing cpu temperature(optional)"
+    echo "\n\t10. Compton for transparency and stuffs(optional)"
+    echo "\n\t11. feh image viewer(optional)"
+    echo "\n\t12. fzf command line fuzzt finder(optional)"
+    echo
+    echo "\nChose number/s followed by spaces, say if you wish to install vim, nnn, libxft*, pulseaudio, and lm-sensors, but not and fira code, libnotify, scrot and zenity you would have to type in in 1 2 3 s s 6 s s 9 s s. Here "s" stands for skip"
+    echo
+    read -p "Chose applications to install " vimm nnn libx firaa notify plseaudio scrott zenitty sensors compton fehh fzff
 
-	case "$nnn" in
-		"2") which nnn > /dev/null
-			if [ $? = 0 ]; then
-			echo "\nnn file manager seems to be already installed on your system, great!, skipping nnn installation"
-		else
-			echo "Installing nnn file manager"
-			apt install nnn
-			if [ $? = 0 ]; then
-				echo "\nnnn installed correctly"
-			else echo "\nSomething went wrong while installing nnn"
-			fi
-			fi
-			;;
-		"s") echo "\nSkipping nnn installation"
-			;;
-		*) echo "Invalid input, skipping nnn setup, continuing rest of the setup though..."
-			;;
-	esac
+    case "$vimm" in
+        "1") # Setting package name variable
+            package_query="vim"
+            package_name="vim"
+            # calling default function
+            default
+            ;;
+        "s") package_name="vim"
+            # calling skip function
+            skip
+            ;;
+        *) # calling invalid input function
+            invalid_input
+            ;;
+    esac
 
-	case "$libx" in
-		"3") echo "\nInstalling required libraries for suckless utilities"
-			apt install -y build-essential libxft-dev libxinerama-dev libx11-dev
-			if [ $? = 0 ]; then
-				echo "\nRequired libraries for suckless utilities installed correctly"
-			else
-				echo "\nSome went wrong while installing required dependencies"
-			fi
-			;;
-		"s") echo "\nSkipping custom libraries installation"
-			;;
-		*) echo "Invalid input, skipping dwm libraries setup, continuing rest of the setup though..."
-			;;
-	esac
-	
-	case "$firaa" in
-		"4") if [ $(ls /usr/share/font* | grep -i fira | sed 's/://g' ) = "/usr/share/fonts-firacode" ]; then
-			echo "\nFira Code font family seems to be already installed on your system, great!, skipping font installation"
-		else
-			echo "Installing Fira Code font family"
-			apt install fonts-firacode
-			if [ $? = 0 ]; then
-				echo "\nFira Code font family installed correctly"
-			else echo "\nSomething went wrong while installing Firacode font family"
-			fi
-		fi
-			;;
-		"s") echo "\nSkipping fonts-firacode installation"
-			;;
-		*) echo "Invalid input, skipping fonts-firacode setup, continuing rest of the setup though..."
-			;;
-	esac
+    case "$nnn" in
+        "2") package_query="nnn"
+            package_name="nnn"
+            default
+            ;;
+        "s") package_name="nnn"
+            skip
+            ;;
+        *) invalid_input
+            ;;
+    esac
 
-	case "$notify" in
-		"5") which notify-send > /dev/null
-			if [ $? = 0 ]; then
-			echo "\nNotify-send seems to be already installed on your system, great!, skipping notify-send installation"
-		else
-			echo "Installing notify-send file manager"
-			apt install libnotify-bin
-			if [ $? = 0 ]; then
-				echo "\nNotify-send installed correctly"
-			else
-				echo "\nSomething went wrong while installing notify-send"
-			fi
-			fi
-			;;
-		"s") echo "\nSkipping notify-send installation"
-			;;
-		*) echo "Invalid input, skipping notify-send setup, continuing rest of the setup though..."
-			;;
-	esac
+    case "$libx" in
+        "3") package_name="build-essential libxft-dev libxinerama-dev libx11-dev"
+            default_install
+            ;;
+        "s") skip_install
+            ;;
+        *) invalid_input
+            ;;
+    esac
+    
+    case "$firaa" in
+        "4") if [ $(ls /usr/share/font* | grep -i fira | sed 's/://g' ) = "/usr/share/fonts-firacode" ]; then
+            echo "\nFira Code font family seems to be already installed on your system, great!, skipping font installation"
+        else
+            echo "Installing Fira Code font family"
+            apt install fonts-firacode
+            if [ $? = 0 ]; then
+                echo "\nFira Code font family installed correctly"
+            else echo "\nSomething went wrong while installing Firacode font family"
+            fi
+        fi
+            ;;
+        "s") echo "\nSkipping fonts-firacode installation"
+            ;;
+        *) echo "Invalid input, skipping fonts-firacode setup, continuing rest of the setup though..."
+            ;;
+    esac
 
-	case "$plseaudio" in
-		"6") which pulseaudio > /dev/null
-			if [ $? = 0 ]; then
-			echo "\nPulseaudio seems to be already installed on your system, great!, skipping installation"
-		else
-			echo "Installing pulseaudio"
-			apt install pulseaudio
-			if [ $? = 0 ]; then
-				echo "\nPulseaudio installed correctly on your system"
-			else
-				echo "\nSomething went wrong while installing pulseaudio"
-			fi
-			fi
-			;;
-		"s") echo "\nSkipping pulseaudio installation"
-			;;
-		*) echo "Invalid input, skipping pulseaudio setup, continuing rest of the setup though..."
-			;;
-	esac
+    case "$notify" in
+        "5") package_query="notify-send"
+            package_name="libnotify-bin"
+            ;;
+        "s") skip_install
+            ;;
+        *) invalid_input
+            ;;
+    esac
 
-	case "$scrott" in
-		"7") which scrot > /dev/null
-			if [ $? = 0 ]; then
-			echo "\nScrot seems to be already installed on your system, great!, skipping scrot installation"
-		else
-			echo "Installing scrot"
-			apt install scrot
-			if [ $? = 0 ]; then
-			       echo "\nScrot installed correctly"
-		       else
-			       echo "\nSomething went wrong installing scrot on your system"
-			fi
-			fi
-			;;
-		"s") echo "\nSkipping scrot installation"
-			;;
-		*) echo "Invalid input, skipping scrot setup, continuing rest of the setup though..."
-			;;
-	esac
+    case "$plseaudio" in
+        "6") package_query="pulseaudio"
+            package_name="pulseaudio"
+            default
+            ;;
+        "s") package_name="pulseaudio" 
+            skip_install
+            ;;
+        *) invalid_input
+            ;;
+    esac
 
-	case "$zenitty" in
-		"8") which zenity > /dev/null
-			if [ $? = 0 ]; then
-			echo "\nZenity seems to be already installed on your system, great!, skipping zenity installation"
-		else
-			echo "Installing Zenity"
-			apt install zenity
-			if [ $? = 0 ]; then
-				echo "\nzenity installed correctly on your system"
-			else
-				echo "\nSomething went wrong while installing zenity on your system"
-			fi
-			fi
-			;;
-		"s") echo "\nSkipping zenity installation"
-			;;
-		*) echo "Invalid input, skipping zenity installation..."
-			;;
-	esac
+    case "$scrott" in
+        "7") package_query="scrot"
+            package_name="scrot"
+            default
+            ;;
+        "s") package_name="scrot" 
+            skip_install
+            ;;
+        *) invalid_input
+            ;;
+    esac
+
+    case "$zenitty" in
+        "8") package_query="zenitty"
+            package_name="zenity"
+            default
+            ;;
+        "s") package_name="zenity"
+            skip_install
+            ;;
+        *) invalid_input
+            ;;
+    esac
 
 
-	case "$sensors" in
-		"9") which sensors > /dev/null
-			if [ $? = 0 ]; then
-			echo "\nlm-sensors seems to be already installed on your system, great!, skipping sensors installation"
-		else
-			echo "Installing lm-sensors"
-			apt install lm-sensors
-			if [ $? = 0 ]; then
-				echo "\nlm-sensors installed correctly on your system"
-			else
-				echo "\nSomething went wrong while installing lm-sensors on your system"
-			fi
-			fi
-			;;
-		"s") echo "\nSkipping lm-sensors installation"
-			;;
-		*) echo "Invalid input, skipping sensors installation..."
-			;;
-	esac
+    case "$sensors" in
+        "9") package_query="sensors"
+            package_name="lm-sensors"
+            default
+            ;;
+        "s") skip_install
+            ;;
+        *) invalid_input
+            ;;
+    esac
 
-	case "$compton" in
-		"10") which compton > /dev/null
-			if [ $? = 0 ]; then
-			echo "\ncompton seems to be already installed on your system, great!, skipping compton installation"
-		else
-			echo "Installing compton"
-			apt install compton
-			if [ $? = 0 ]; then
-				echo "\nCompton installed correctly"
-			else
-				echo "\nSomething went wrong while installing compton on your system"
-			fi
-			fi
-			;;
-		"s") echo "\nSkipping compton installation"
-			;;
-		*) echo "Invalid input, skipping compton installation..."
-			;;
-	esac
+    case "$compton" in
+        "10") package_query="compton"
+            package_name="compton"
+            default
+            ;;
+        "s") package_name="compton"
+            skip_install
+            ;;
+        *) invalid_input
+            ;;
+    esac
 
-	case "$fehh" in
-		"11") which feh > /dev/null
-			if [ $? = 0 ]; then
-			echo "\nFeh image viewer seems to be already installed on your system, great!, skipping feh installation"
-		else
-			echo "Installing feh"
-			apt install feh
-			if [ $? = 0 ]; then
-				echo "\nFeh image viewer installed correctly"
-			else
-				echo "\nSomething went wrong while installing feh on your system"
-			fi
-			fi
-			;;
-		"s") echo "\nSkipping feh installation"
-			;;
-		*) echo "Invalid input, skipping feh installation..."
-			;;
-	esac
+    case "$fehh" in
+        "11") package_query="feh"
+            package_name="feh"
+            default
+            ;;
+        "s") package_name="feh"
+            skip_install
+            ;;
+        *) invalid_input
+            ;;
+    esac
 
-	case "$fzff" in
-		"12") which fzf > /dev/null
-			if [ $? = 0 ]; then
-			echo "\nFzf seems to be already installed on your system, great!, skipping feh installation"
-		else
-			echo "Installing fzf"
-			apt install fzf
-			if [ $? = 0 ]; then
-				echo "\nfzf installed correctly"
-			else
-				echo "\nSomething went wrong while installing fzf on your system"
-			fi
-			fi
-			;;
-		"s") echo "\nSkipping fzf installation"
-			;;
-		*) echo "Invalid input, skipping fzf installation..."
-			;;
-	esac
+    case "$fzff" in
+        "12") package_query="fzf"
+            package_name="fzf"
+            default
+            ;;
+        "s") package_name="fzf"
+            skip_install
+            ;;
+        *) invalid_input
+            ;;
+    esac
 else
-	echo "\nSeems like you don't have root privilege. You need to have root privilege to install packages. Run the installer as root user"
-	exit 1
+    echo "\nSeems like you don't have root privilege. You need to have root privilege to install packages. Run the installer as root user"
+    exit 1
 fi
