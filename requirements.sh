@@ -59,11 +59,11 @@ if [ $(id -u) = 0 ]; then
             package_query="vim"
             package_name="vim"
             # calling default function
-            default
+            default_install
             ;;
         "s") package_name="vim"
             # calling skip function
-            skip
+            skip_install
             ;;
         *) # calling invalid input function
             invalid_input
@@ -73,10 +73,10 @@ if [ $(id -u) = 0 ]; then
     case "$nnn" in
         "2") package_query="nnn"
             package_name="nnn"
-            default
+            default_install
             ;;
         "s") package_name="nnn"
-            skip
+            skip_install
             ;;
         *) invalid_input
             ;;
@@ -113,6 +113,7 @@ if [ $(id -u) = 0 ]; then
     case "$notify" in
         "5") package_query="notify-send"
             package_name="libnotify-bin"
+            default_install
             ;;
         "s") skip_install
             ;;
@@ -123,7 +124,7 @@ if [ $(id -u) = 0 ]; then
     case "$plseaudio" in
         "6") package_query="pulseaudio"
             package_name="pulseaudio"
-            default
+            default_install
             ;;
         "s") package_name="pulseaudio" 
             skip_install
@@ -135,7 +136,7 @@ if [ $(id -u) = 0 ]; then
     case "$scrott" in
         "7") package_query="scrot"
             package_name="scrot"
-            default
+            default_install
             ;;
         "s") package_name="scrot" 
             skip_install
@@ -147,7 +148,7 @@ if [ $(id -u) = 0 ]; then
     case "$zenitty" in
         "8") package_query="zenitty"
             package_name="zenity"
-            default
+            default_install
             ;;
         "s") package_name="zenity"
             skip_install
@@ -160,7 +161,7 @@ if [ $(id -u) = 0 ]; then
     case "$sensors" in
         "9") package_query="sensors"
             package_name="lm-sensors"
-            default
+            default_install
             ;;
         "s") skip_install
             ;;
@@ -171,7 +172,7 @@ if [ $(id -u) = 0 ]; then
     case "$compton" in
         "10") package_query="compton"
             package_name="compton"
-            default
+            default_install
             ;;
         "s") package_name="compton"
             skip_install
@@ -183,7 +184,7 @@ if [ $(id -u) = 0 ]; then
     case "$fehh" in
         "11") package_query="feh"
             package_name="feh"
-            default
+            default_install
             ;;
         "s") package_name="feh"
             skip_install
@@ -195,7 +196,7 @@ if [ $(id -u) = 0 ]; then
     case "$fzff" in
         "12") package_query="fzf"
             package_name="fzf"
-            default
+            default_install
             ;;
         "s") package_name="fzf"
             skip_install
