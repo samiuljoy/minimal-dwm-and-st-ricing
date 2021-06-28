@@ -93,7 +93,7 @@ if [ $(id -u) = 0 ]; then
     esac
     
     case "$firaa" in
-        "4") if [ $(ls /usr/share/font* | grep -i fira | sed 's/://g' ) = "/usr/share/fonts-firacode" ]; then
+        "4") if [ -d "/usr/share/fonts-firacode" ]; then
             echo "\nFira Code font family seems to be already installed on your system, great!, skipping font installation"
         else
             echo "Installing Fira Code font family"
